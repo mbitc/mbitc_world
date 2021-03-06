@@ -1,2 +1,3 @@
 # mbitc_world
-Created with CodeSandbox
+
+some experiment with node.js express mongoose and ejs
