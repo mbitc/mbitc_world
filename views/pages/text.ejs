@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="d-flex flex-column h-100">
+    
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+    <% for (let i = 0; i < eventData.length; i++) { %>
+    <div class="row justify-content-center">
+    <div class="card" style="width: 28rem;">
+        <div class="card-body">
+        <h5 class="card-title">Message</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+        email:  <%= eventData[i].email %>
+        </h6><p class="card-text">
+        text: <%= eventData[i].text %>
+        </h6><p class="card-text">
+        Id: <%= eventData[i]._id %>
+        <div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-message-<%= eventData[i]._id %>">Open</button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-message-edit-<%= eventData[i]._id %>">Edit</button>
+        </div>
+    </div>
+    </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-message-<%= eventData[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="deleteModalLabel">Message</h5>
+    </div>
+    <div class="modal-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+            email:  <%= eventData[i].email %>
+            </h6><p class="card-text">
+            text: <%= eventData[i].text %>
+            </h6><p class="card-text">
+            Id: <%= eventData[i]._id %>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a class="btn btn-raised btn-danger" href="/text/<%= eventData[i]._id%>?_method=DELETE"> 
+            Delete 
+        </a> 
+    </div>
+</div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-message-edit-<%= eventData[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Message Edit</h5>
+        </div>
+        <div class="modal-body">
+            <form method="PUT" action="/text/<%= eventData[i]._id %>">
+                <label for="inputEmail" class="visually-hidden">Email address</label>
+                <input type="email" name="email" class="form-control" placeholder="<%= eventData[i].email %>" required autofocus>
+                <label for="inputText" class="visually-hidden">Text</label>
+                <textarea type="text" name="text" class="form-control" placeholder="<%= eventData[i].text %>" required></textarea>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-raised btn-primary" type="submit"> 
+                Save 
+            </button> 
+        </div>
+    </div>
+    </div>
+    </div>
+    <% } %>
+
+  <!-- Back link -->
+        <p>Use <a href="/">back to Main page</a> if need do it.</p>
+      </div>
+    </main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
