@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 // Connect to Mongo
 mongoose
   .connect(
-    "mongodb+srv://mb_user:gerumas11@cluster0.prys4.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    "mongodb+srv://",
     {
       useUnifiedTopology: true,
       useNewUrlParser: true,
